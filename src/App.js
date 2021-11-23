@@ -1,10 +1,15 @@
 import React from 'react'
-
+import Header from './components/Header/Header'
+import Headline from './components/Headline/Headline'
+import "./app.scss"
 function App() {
-  console.log(React.version);
   return (
     <div>
-      Start
+        <Header />
+        <section className="main">
+          <Headline header="Posts" desc="Click the button to render posts"/>
+        </section>
+        
     </div>
   );
 }
