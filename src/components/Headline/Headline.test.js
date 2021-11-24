@@ -1,5 +1,6 @@
 import React from 'react'
 import {shallow} from 'enzyme'
+import PropTypes  from 'prop-types'
 import Headline from './Headline'
 
 import { findByTestAttr } from './../../../Utils'
@@ -10,6 +11,25 @@ import { findByTestAttr } from './../../../Utils'
     }
 
 describe("Headline Component", () => {
+
+    describe("Checking PropTypes", () => {
+        it('Should not trow a warning', () => {
+            const expectedProps = {
+                header: 'TEst header',
+                description: 'Test description',
+                tempArr: [{
+                    fName: "Alex",
+                    lName: "Smith",
+                    email: 'smith@gmail.com',
+                    age: false,
+                    onlineStatus: true
+                }]
+            }
+            const propsErr = PropTypes.checkPropTypes(Headline.propTypes, expectedProps, 'props', 'Headline')
+            expect(propsErr).toBeUndefined()
+        })
+    })
+
     describe("Have props", () => {
         let wrapper
         beforeEach(() => {
@@ -46,7 +66,7 @@ describe("Headline Component", () => {
             const component = findByTestAttr(wrapper, 'HeadlineComponent')
             expect(component.length).toBe(0)
         })
-    })
+    });
 })
 
 
