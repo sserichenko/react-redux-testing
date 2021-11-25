@@ -7,10 +7,12 @@ import Button from "./Button"
 describe('Button Component', () => {
     describe("Renders", () => {
         let wrapper
+        let mockFunc
         beforeEach(() => {
+            mockFunc = jest.fn()
             const props = {
                 buttonText: "Test button",
-                emitEvent: () => {}
+                emitEvent: mockFunc
             }
             wrapper = shallow(<Button {...props}/>)
         })
@@ -20,8 +22,13 @@ describe('Button Component', () => {
             expect(button.length).toBe(1)
         })
 
+        it("Should emit callback on click event", () => {
+            const button = findByTestAttr(wrapper, "ButtonComponent");
+            button.simulate('click');
+            const callback = mockFunc.mock.calls.length
+            expect(callback).toBe(1)
+        })
+
     });
-
-
 
 })

@@ -19,25 +19,29 @@ function App() {
 
   const dispatch = useDispatch();
   const posts = useSelector(({postsReducer}) => postsReducer.posts);
-
-  const state = useSelector(state => state)
-  console.log('state', state)
+  const [hideBtn, setHideBtn] = useState(false)
 
   const fetch = () => {
     dispatch(fetchPosts())
+    exampleMethod_updatesState()
   }
+
 
   const configButton = {
     buttonText: "Get posts",
     emitEvent: fetch
   }
 
+  const exampleMethod_updatesState = () => {
+    setHideBtn(!hideBtn)
+  }
+
   return (
-    <div>
+    <div className="App" data-test="AppComponent">
         <Header />
         <section className="main">
           <Headline header="Posts" desc="Click the button to render posts" tempArr={tempArr}/>
-          <Button {...configButton}/>
+          {!hideBtn && <Button {...configButton}/>}
           {
             posts.length > 0 &&
             <div>

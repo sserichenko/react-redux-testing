@@ -21,7 +21,7 @@ describe("Headline Component", () => {
                     fName: "Alex",
                     lName: "Smith",
                     email: 'smith@gmail.com',
-                    age: false,
+                    age: 23,
                     onlineStatus: true
                 }]
             }
